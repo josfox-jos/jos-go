@@ -1,12 +1,12 @@
-# `jos.mx/jos` — Official Go SDK & CLI for `.jos`
+# `josfox.cloud/jos` — Official Go SDK & CLI for `.jos`
 
 Official Go library and CLI for **`.jos` (JSON Operating System)** — RFC 8785 JCS canonicalization, SHA-256 content-addressed sealing (`art_<hex>`), and structural `.jos 2.0` verification.
 
 ## Install
 
 ```bash
-go get jos.mx/jos@v0.1.0
-go install jos.mx/jos/cmd/jos@v0.1.0
+go get josfox.cloud/jos@v0.1.0
+go install josfox.cloud/jos/cmd/jos@v0.1.0
 ```
 
 ## Quick Start
@@ -16,7 +16,7 @@ package main
 
 import (
     "fmt"
-    "jos.mx/jos"
+    "josfox.cloud/jos"
 )
 
 func main() {

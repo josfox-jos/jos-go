@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"jos.mx/jos"
+	"josfox.cloud/jos"
 )
 
 func TestSealAndVerify(t *testing.T) {

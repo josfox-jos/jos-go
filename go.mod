@@ -1,3 +1,3 @@
-module jos.mx/jos
+module josfox.cloud/jos
 
 go 1.22

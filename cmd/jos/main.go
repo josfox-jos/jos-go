@@ -6,12 +6,12 @@ import (
 	"fmt"
 	"os"
 
-	"jos.mx/jos"
+	"josfox.cloud/jos"
 )
 
 func main() {
 	if len(os.Args) < 2 || os.Args[1] == "--version" || os.Args[1] == "version" {
-		fmt.Printf("jos-go %s (jos.mx/jos)\n", jos.Version)
+		fmt.Printf("jos-go %s (josfox.cloud/jos)\n", jos.Version)
 		return
 	}
 	cmd := os.Args[1]

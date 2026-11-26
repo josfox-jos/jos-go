@@ -16,7 +16,7 @@ import (
 	"strings"
 )
 
-// Version is the semantic version of the jos.mx/jos Go SDK.
+// Version is the semantic version of the josfox.cloud/jos Go SDK.
 const Version = "0.1.0"
 
 var validKinds = map[string]bool{
