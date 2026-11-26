@@ -17,7 +17,7 @@ import (
 )
 
 // Version is the semantic version of the josfox.cloud/jos Go SDK.
-const Version = "0.1.0"
+const Version = "0.1.2"
 
 var validKinds = map[string]bool{
 	"atom": true, "flow": true, "service": true, "persona": true,
@@ -67,11 +67,7 @@ func writeJCS(buf *bytes.Buffer, v any) error {
 	case int64:
 		buf.WriteString(strconv.FormatInt(x, 10))
 	case string:
-		b, err := json.Marshal(x)
-		if err != nil {
-			return err
-		}
-		buf.Write(b)
+		return writeJCSString(buf, x)
 	case []any:
 		buf.WriteByte('[')
 		for i, elem := range x {
@@ -94,11 +90,9 @@ func writeJCS(buf *bytes.Buffer, v any) error {
 			if i > 0 {
 				buf.WriteByte(',')
 			}
-			kb, err := json.Marshal(k)
-			if err != nil {
+			if err := writeJCSString(buf, k); err != nil {
 				return err
 			}
-			buf.Write(kb)
 			buf.WriteByte(':')
 			if err := writeJCS(buf, x[k]); err != nil {
 				return err
@@ -118,6 +112,21 @@ func writeJCS(buf *bytes.Buffer, v any) error {
 		}
 		return writeJCS(buf, generic)
 	}
+	return nil
+}
+
+func writeJCSString(buf *bytes.Buffer, s string) error {
+	var tmp bytes.Buffer
+	enc := json.NewEncoder(&tmp)
+	enc.SetEscapeHTML(false)
+	if err := enc.Encode(s); err != nil {
+		return err
+	}
+	b := tmp.Bytes()
+	if len(b) > 0 && b[len(b)-1] == '\n' {
+		b = b[:len(b)-1]
+	}
+	buf.Write(b)
 	return nil
 }
 
